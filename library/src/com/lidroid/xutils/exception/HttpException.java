@@ -19,7 +19,14 @@ public class HttpException extends BaseException {
     private static final long serialVersionUID = 1L;
 
     private int exceptionCode;
-
+    private String entity;
+    /**
+     * 
+     * @return The http response httpEntity
+     */
+    public String getEntity() {
+        return entity;
+    }
     public HttpException() {
     }
 
@@ -71,6 +78,18 @@ public class HttpException extends BaseException {
     }
 
     /**
+     * 对于非正常状态下，返回HTTP entity
+     * @param exceptionCode 
+     * @param detailMessage
+     * @param entity  HTTP entity
+     * @author JPG
+     * @Date 2015-7-1 下午2:08:37
+     */
+    public HttpException(int exceptionCode, String detailMessage, String entity) {
+    	this(exceptionCode, detailMessage);
+    	this.entity=entity;
+	}
+	/**
      * @return The http response status code, 0 if the http request error and has no response.
      */
     public int getExceptionCode() {
